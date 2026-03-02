@@ -7,9 +7,14 @@
         "storage": "32gb"
     },
     "forwardPorts": [6080],
-    "postStartCommand": "vncserver :1 -geometry 1280x800 -depth 24 && novnc --vnc localhost:5901 --listen 6080 &",
+    "portsAttributes": {
+        "6080": {
+            "label": "Desktop",
+            "onAutoForward": "openBrowser"
+        }
+    },
+    "postStartCommand": "vncserver :1 -geometry 1280x800 -depth 24 && /usr/share/novnc/utils/launch.sh --vnc localhost:5901 --listen 6080 --web /usr/share/novnc &",
     "remoteUser": "user",
-    "postCreateCommand": "echo 'Welcome to Cal Poly ECE4203 2026'",
     "customizations": {
         "vscode": {
             "extensions": [
